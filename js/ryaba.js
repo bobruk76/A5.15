@@ -1,30 +1,27 @@
 const dataURL = "https://api.myjson.com/bins/jcmhn";
 const $result = $("#result");
 const $fetchButton = $("#button-fetch")
-
+var fields = [];
 
 
 function handleButton() {
-  $.getJSON(dataURL,handleData);
+
 }
 
 $fetchButton.click(handleButton);
 
 function handleData(data) {
-  console.log(data)
-  // кажется, какой-то из этих способов сработает
-  //const var1 = $("input[name=var1]")[0].value()
-  //const var1 = $("input[name=var1]").value()
-  //const var1 = $("input[name=var1]")[0].default()
 
-  for(jstring in data.text) {
-    $result.append('<p>'+jstring.text+'</p>');
-    console.log(jstring)
+}
+/*	$("#button-fetch").click(handleButton);*/
+ function init() {
+    $.getJSON(dataURL, function(data) {
+    for(var i in data.text) {
+      $result.append('<span>'+data.text[i]+'</span>');
+      Array.prototype.push.apply(fields,data.text[i].match(/{[a-z][a-z0-9]*}/gi));
+    }
+    console.log(fields);
   }
-}
+)};
 
-/* function init() {
-	$("#button-fetch").click(handleButton);
-}
-
-$(document).ready(init); */
+$(document).ready(init);

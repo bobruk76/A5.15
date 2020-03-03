@@ -1,22 +1,30 @@
 const dataURL = "https://api.myjson.com/bins/jcmhn";
+const $result = $("#result");
+const $fetchButton = $("#button-fetch")
+
+
 
 function handleButton() {
-  // взять данные по dataUrl, вытащить их и передать в handleData
+  $.getJSON(dataURL,handleData);
 }
 
+$fetchButton.click(handleButton);
+
 function handleData(data) {
+  console.log(data)
   // кажется, какой-то из этих способов сработает
   //const var1 = $("input[name=var1]")[0].value()
   //const var1 = $("input[name=var1]").value()
   //const var1 = $("input[name=var1]")[0].default()
 
-  // надо сделать так чтобы сообщения подменились на значения из формы
-  let text = "Здесь могла быть ваша реклама";
-	$("#result").text(text);
+  for(jstring in data.text) {
+    $result.append('<p>'+jstring.text+'</p>');
+    console.log(jstring)
+  }
 }
 
-function init() {
+/* function init() {
 	$("#button-fetch").click(handleButton);
 }
 
-$(document).ready(init);
+$(document).ready(init); */

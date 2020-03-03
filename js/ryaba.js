@@ -16,10 +16,11 @@ function handleData(data) {
 
  function init() {
       const template = info =>{
-        const $field = $(`<div class="form-group">
-        <label for="${info}">${info}</label>
+        const $field = $(`<div class="form-group row">
+        <label class="col-sm-2 col-form-label" for="${info}">${info}</label>
+        <div class="col-sm-10">
         <input type="text" class="form-control" name="${info}" placeholder="${info}" value="">
-        </div>`)
+        </div></div>`)
         $field.appendTo($form);
       }
 

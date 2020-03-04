@@ -1,29 +1,35 @@
 const dataURL = "https://api.myjson.com/bins/jcmhn";
-const $form = $('#messages>.bt-wrap');
-const $result = $("#result>p");
+const $form = $('#messages');
+const $bt__wrap = $('#messages>.bt-wrap');
 const $fetchButton = $("#button-fetch")
+const $result = $("#result>p");
 var fields = [];
 
+
 function handleButton() {
+  let $content = $("#result>p");
+  let request=$form.serializeArray();
 
+  for(let i in request){
+    $content.html(function(j,oldText){
+      return oldText.split(`{${request[i].name}}`).join(`<span class="badge badge-success">${request[i].value}</span>`)
+    })
+  }
+
+  return false;
 }
 
-$fetchButton.click(handleButton);
+$fetchButton.click(handleButton)
 
-function handleData(data) {
-
-}
-
- function init() {
+function init() {
       const template = info =>{
         const $field = $(`<div class="form-group row">
         <label class="col-sm-2 col-form-label" for="${info}">${info}</label>
         <div class="col-sm-10">
-        <input type="text" class="form-control" name="${info}" placeholder="${info}" value="">
+        <input type="text" class="form-control" name="${info}" placeholder="${info}" value="${info}">
         </div></div>`)
-        $field.insertBefore($form);
+        $field.insertBefore($bt__wrap);
       }
-
 
     $.getJSON(dataURL, function(data) {
     for(let i in data.text) {

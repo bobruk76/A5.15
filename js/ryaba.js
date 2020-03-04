@@ -1,6 +1,6 @@
 const dataURL = "https://api.myjson.com/bins/jcmhn";
-const $form = document.getElementById('messages');
-const $result = $("#result");
+const $form = $('#messages>.bt-wrap');
+const $result = $("#result>p");
 const $fetchButton = $("#button-fetch")
 var fields = [];
 
@@ -21,13 +21,13 @@ function handleData(data) {
         <div class="col-sm-10">
         <input type="text" class="form-control" name="${info}" placeholder="${info}" value="">
         </div></div>`)
-        $field.appendTo($form);
+        $field.insertBefore($form);
       }
 
 
     $.getJSON(dataURL, function(data) {
     for(let i in data.text) {
-      $result.append('<span>'+data.text[i]+'</span>');
+      $result.append(data.text[i]);
       Array.prototype.push.apply(fields,data.text[i].match(/{[a-z][a-z0-9]*}/gi));
     }
     fields = Array.from(new Set(fields));

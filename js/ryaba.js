@@ -18,7 +18,6 @@ function handleButton(event) {
   event.preventDefault();
 }
 
-<<<<<<< HEAD
 function init() {
   $fetchButton.click(handleButton)
   const template = info =>{
@@ -30,21 +29,7 @@ function init() {
     $field.insertBefore($bt__wrap);
   }
     let fields = [];
-=======
 
-
-function init() {
-  $fetchButton.click(handleButton)
-      const template = info =>{
-        const $field = $(`<div class="form-group row">
-        <label class="col-sm-2 col-form-label" for="${info}">${info}</label>
-        <div class="col-sm-10">
-        <input type="text" class="form-control" id="${info}" name="${info}" placeholder="${info}" value="">
-        </div></div>`)
-        $field.insertBefore($bt__wrap);
-      }
-
->>>>>>> c56e4a1c60d68237ad93f0acb37fd9e51c95fd65
     $.getJSON(dataURL, function(data) {
       data.text.forEach(Item => {
       $result.append(Item);
